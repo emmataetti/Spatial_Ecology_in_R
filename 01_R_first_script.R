@@ -27,6 +27,29 @@ elisa <- c(100, 80, 50, 20, 10) #an array of human deaths due to a disease
 plot(matteo, elisa, pch=19)
 
 
+#character exaggeration
+plot(matteo, elisa, pch=19, cex=2)
+
+
+#color
+plot(matteo, elisa, pch=19, cex=2, col="blue")
+
+# change lables
+plot(matteo, elisa, pch=19, cex=2, col="blue", xlab="number of mammals", ylab="number of human deaths")
+
+# increasing the axis dimention
+plot(matteo, elisa, pch=19, cex=2, col="blue", xlab="number of mammals", ylab="number of human deaths", cex.axis=2)
+
+#long function
+plot(matteo, 
+     elisa, 
+     pch=19, 
+     cex=2, 
+     col="blue", 
+     xlab="number of mammals", 
+     ylab="number of human deaths",
+    cex.lab=2)
+
 
 
 

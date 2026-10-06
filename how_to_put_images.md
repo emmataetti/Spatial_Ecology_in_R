@@ -13,5 +13,5 @@ In order to import images in Markdown there are two diff methods:
 
 # Creating folder and link to the souce file
 
-<img src="Pics"/>
+<img src="Pics/dji_fly_20241226_054143_0_1735188103432_photo_low_quality.JPG">
   

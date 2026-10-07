@@ -40,5 +40,32 @@ plot(elevation)
 elevation2 <- bei.extra[[1]]
 
 
+# creating a density map
+densitymap <-density(bei)
+
+#plot the result
+plot(densitymap)
+
+# plotting points on tops of density map
+points(bei, cex=.5)
+
+# multiframe!
+#creating multiframe
+par(mfrow=c(1, 2))
+#plot the two graph in the frame
+plot(elevation)
+plot(densitymap)
+
+# put elevation map on top of density map
+par(mfrow=c(2, 1))
+plot(elevation)
+plot(densitymap)
+
+
+
+
+
+
+
 
  

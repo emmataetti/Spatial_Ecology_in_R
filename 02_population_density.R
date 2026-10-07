@@ -26,7 +26,7 @@ plot
 # subsetting a dataset
 # there are two diff methods to make the subset:
 # first: name of the variable and the simbol $
-# second: 
+# second: number of the layer and [] for tables, [[]] for map layers
 
 #first
 elevation <- bei.extra$elev
@@ -35,7 +35,8 @@ elevation
 #plot
 plot(elevation)
 
-# subset by the number of the layer/variable
+# second 
+# subset by the number of the layer/variable : in this case no tables but we have map layers
 elevation2 <- bei.extra[[1]]
 
 

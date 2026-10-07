@@ -1,11 +1,43 @@
 # R code for pop density
 
 
-#installing packages
+# installing packages
 install.packages("spatstat")
 
 
 # using the package(s)
 library(spatstat)
+
+# recall the data
+bei
+
+# looking at the points in space
+plot (bei)
+
+# changing the shape of points and dimentions
+plot(bei, pch=15, cex=.5)
+
+# drivers, anther dataset
+bei.extra
+
+#plot  variables
+plot
+
+# subsetting a dataset
+# there are two diff methods to make the subset:
+# first: name of the variable and the simbol $
+# second: 
+
+#first
+elevation <- bei.extra$elev
+#output
+elevation 
+#plot
+plot(elevation)
+
+# subset by the number of the layer/variable
+elevation2 <- bei.extra[[1]]
+
+
 
  

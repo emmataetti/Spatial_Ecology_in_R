@@ -16,7 +16,7 @@ This course mainly focuses on the application of free and open source algorithms
 4.  Multivariate analysis in R
 5. Remote sensing in R
 6. Multitemporal analysis of ecosystem functions
-7. 
+7. Species Distribution Modelling
 
 <img width="1920" height="960" alt="unnamed-chunk-15-1" src="https://github.com/user-attachments/assets/de3ebd48-5d3b-4ee3-853a-29f2a5dde755" />
 

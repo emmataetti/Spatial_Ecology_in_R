@@ -2,7 +2,7 @@
 
 
 # installing packages
-install.packages("spatstat")
+# install.packages("spatstat")
 
 
 # using the package(s)
@@ -61,6 +61,30 @@ par(mfrow=c(2, 1))
 plot(elevation)
 plot(densitymap)
 
+# change colors in our maps
+cl <- colorRampPalette(c("blue", "green", "red"))
+
+#plot density map and change its color thans to cl
+plot(densitymap, col=cl)
+
+# using others colors
+cl <- colorRampPalette(c("magenta1", "green", "mediumpurple"))
+plot(densitymap, col=cl)
+
+# nuances
+cl3 <- colorRampPalette(c("magenta1", "green", "mediumpurple"))(3)
+plot(densitymap, col=cl3)
+
+cl10 <- colorRampPalette(c("magenta1", "green", "mediumpurple"))(10)
+plot(densitymap, col=cl10)
+
+cl100 <- colorRampPalette(c("magenta1", "green", "mediumpurple"))(100)
+plot(densitymap, col=cl100)
+
+# exercise: make a multiframe with the map with 10 nuances on top of that with 100
+par(mfrow=c(2, 1))
+plot(densitymap, col=cl10)
+plot(densitymap, col=cl100)
 
 
 

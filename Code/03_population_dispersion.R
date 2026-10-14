@@ -98,13 +98,13 @@ plot(tempmap, col=viridis(100), main="temperature")
 plot(prepmap, col=viridis(100), main="precipitation")
 plot(vegemap, col=viridis(100), main="vegetation")
 
-# making a stack
+# making a stack: IMPORTANT!
 drivers <- c(elevmap, tempmap, prepmap, vegemap)
 plot(drivers, col=inferno(100))
 
 # how to plot a singe driver from the stack, two methods:
 # first: you can subset the stack using the level
-t <- drivers [[2]]
+t <- drivers[[2]]
 plot(t)
 points(presence)
 # second: use the name

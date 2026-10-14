@@ -79,6 +79,7 @@ cl <- colorRampPalette(c("red","orange","yellow"))(100)
 plot(vegemap, col=cl)
 points(presence, cex=2)
 
+# VIRIDIS https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html
 
 # plotting elevmap with viridis package
 plot(elevmap, col=viridis(100))

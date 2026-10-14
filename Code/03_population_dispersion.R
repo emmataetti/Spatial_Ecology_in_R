@@ -31,7 +31,7 @@ absence <- rana[rana$Occurrence == 0]
 absence <- rana[rana$Occurrence !=1]
 
 # ex: plot pr and ab with different colors in the same plot
-plot(presence, col="blue")
-points(absence, col="violet")
+plot(presence, col="blue", cex=2.5)
+points(absence, col="violet", cex=2.5)
 
 

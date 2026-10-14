@@ -80,4 +80,34 @@ plot(vegemap, col=cl)
 points(presence, cex=2)
 
 
+# plotting elevmap with viridis package
+plot(elevmap, col=viridis(100))
+plot(elevmap, col=mako(100))
 
+#plot the maps all togheter in the same multiframe
+par(mfrow=c(2,2))
+plot(elevmap, col=viridis(100))
+plot(tempmap, col=viridis(100))
+plot(prepmap, col=viridis(100))
+plot(vegemap, col=viridis(100))
+
+# put a title to the maps, using the argument main
+par(mfrow=c(2,2))
+plot(elevmap, col=viridis(100), main="elevation")
+plot(tempmap, col=viridis(100), main="temperature")
+plot(prepmap, col=viridis(100), main="precipitation")
+plot(vegemap, col=viridis(100), main="vegetation")
+
+# making a stack
+drivers <- c(elevmap, tempmap, prepmap, vegemap)
+plot(drivers, col=inferno(100))
+
+# how to plot a singe driver from the stack, two methods:
+# first: you can subset the stack using the level
+t <- drivers [[2]]
+plot(t)
+points(presence)
+# second: use the name
+t <- drivers$temperature
+plot(t)
+points(presence)

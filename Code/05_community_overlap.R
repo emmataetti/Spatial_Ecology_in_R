@@ -14,3 +14,59 @@ tail(kerinci)
 
 # getting a summary of the dataset
 summary(kerinci)
+
+
+# Circular time
+circulartime <- kerinci$Time * 2 * pi
+
+# Putting the circular time inside the dataset
+kerinci$Timecirc <- kerinci$Time * 2 * pi
+
+# Loing at the new column
+head(kerinci)
+
+# Subsetting the dataset with the selection of the species tiger
+tiger <- kerinci[kerinci$Sps=="tiger",]
+
+summary(tiger)
+
+# Density plot of spreading of the tiger in the area in different times
+densityPlot(tiger$Timecirc)
+
+# Alternative method: create the time variable from the tiger dataset and use it in the calculation
+tigertime <- tiger$Timecirc
+densityPlot(tigertime)
+
+# Exercise: select all the rows of the kerinci dataset with the species macaque
+macaque <- kerinci[kerinci$Sps=="macaque",]
+
+# Check the set
+head(macaque)
+
+# Exercise: how to be sure that only macaque species has been selectes
+summary(macaque) # being lazy is beautiful!
+
+# Exercise: make the density plot of the macaque
+macaquetime <- macaque$Timecirc
+densityPlot(macaquetime)
+
+# Overlap the two distributions
+overlapPlot(tigertime, macaquetime)
+
+# Changing the graph
+overlapPlot(tigertime, macaquetime, linetype=c(3,1))
+
+# Changing the line colors
+overlapPlot(tigertime, 
+            macaquetime, 
+            linetype=c(3,1),
+            linecol=c("cyan3", "coral")
+           )
+
+# Changing the overlap color
+overlapPlot(tigertime, 
+            macaquetime, 
+            linetype=c(3,1),
+            linecol=c("cyan3", "coral"),
+            olapcol="deeppink"
+           )

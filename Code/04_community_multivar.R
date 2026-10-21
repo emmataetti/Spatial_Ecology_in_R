@@ -1,6 +1,7 @@
 # Code for performing multivariate analysis with community data
 
 # The vegan package will be used for the multivariate part
+# install.packages("vegan")
 library(vegan)
 
 # Using the data inside vegan
@@ -29,7 +30,7 @@ summary(multipca)
 
 # Exercise: calculate the percentage of explained variability by PC2
 # proportion of PC1: 0.2157
-# percentage of explained variability by PC!: 21.57%
+# percentage of explained variability by PC: 21.57%
 
 # Exercise: we are going to make a graph with just two dimensions over the 20 original dimensions, what is the total variability explained by PC1 + PC2
 # Total explained variability 

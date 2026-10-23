@@ -27,7 +27,7 @@ g <- graph_from_data_frame(interactions, vertices=species) # directed is the def
 plot(g)
 
 # build the graph without directions
-g <- graph_from_data_frame(interactions, vertices=species, directed=FALSE) # in this case removed arrows ???
+g <- graph_from_data_frame(interactions, directed = F, vertices=species) # in this case removed arrows ???
 plot(g)
 
 # the graph will mantein the same interactions but with different rappresentation

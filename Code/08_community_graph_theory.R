@@ -23,16 +23,18 @@ interactions <- data.frame(predatior, prey)
 
 # bulding the graph
 # function that create graph from dataframe
-g <- graph_from_data_frame(interactions, vertices=species) # directed is the default
+g <- graph_from_data_frame(interactions, vertices=species) # directed=TRUE is the default
 plot(g)
 
 # build the graph without directions
-g <- graph_from_data_frame(interactions, directed = F, vertices=species) # in this case removed arrows ???
+g <- graph_from_data_frame(interactions, vertices=species, directed=FALSE) # in this case removed arrows, directed is the default
 plot(g)
 
-# the graph will mantein the same interactions but with different rappresentation
+# the graph will mantain the same interactions but with different rappresentation
 # function seed choose only one of the potential rapp
 set.seed(42)
+g <- graph_from_data_frame(interactions, vertices=species) # directed=TRUE is the default
+plot(g)
 
 
 

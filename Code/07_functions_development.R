@@ -46,7 +46,7 @@ mfdef <- function(nx=2,ny=1){
    par(mfrow=c(nx, ny))
 }
 
-mfdef() # no rguments inside because is default
+mfdef() # no arguments inside because is default
 plot(3,5)
 plot(6,7)
 
@@ -55,11 +55,11 @@ mfdef(3,1)
 plot(3,5)
 plot(6,7)
 
-#suggestion: one you develop a function is better to use default, you can still change the default values but you can just use mfdef() and it will still works
+#suggestion: when you develop a function is better to use default, you can still change the default values but you can just use mfdef() and it will still works
 
 # new operator:if else
 # using the operator if else to look if a number is positive or negative
-# we develop a function which tell us if the function? is positive o negative
+# we develop a function which tell us if the number is positive o negative
 
 amIpositive <- function(x){
  if(x>0) {
@@ -90,7 +90,8 @@ amIpositive <- function(x){
  amIpositive(-98) # "this number is negative, idiot"
  amIpositive(0) # "Zero is nor positive nor negative"
 
-# how to develop for loops
+# how to develop for loops 
+# useful to avoid to repeat an operation
 loop <- function() {
  for (i in 1:10) {
    print(i)
@@ -107,7 +108,7 @@ loop <- function() {
   }
 loop()
 
-# loop with a operation inside
+# loop with a operation inside: you can add inside the loop some additional operations
 loop2 <- function() {
  for (i in 1:10) {
    multi <-i * 4
@@ -134,7 +135,7 @@ loop2 <- function() {
   }
 loop2()
 
-# there is also way to make file trought the function sink(name o the file)
+# there is also way to crate a file trought the function sink(name o the file)
 sink("numbers.txt")
 loop2()
 

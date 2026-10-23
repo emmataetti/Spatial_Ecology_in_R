@@ -1,0 +1,20 @@
+# Remote sensing for ecosystem
+
+## Installation of the imageRy package from github
+
+In order to install packages form github you need to use a function coming out from the remotes ppackage.
+
+Hence:
++ install the remote package
++ install imageRy
+
+
+## 1. Install remotes
+```r
+install.packages("remotes")
+```
+
+## 2. Install imageRy from gitbhub
+```r
+install_github("ducciorocchini/imageRy") # github account and name of the package
+```

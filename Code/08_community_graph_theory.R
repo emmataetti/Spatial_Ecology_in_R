@@ -4,6 +4,12 @@
 # install.packages("igraph") 
 library(igraph)
 
+library(igraph)
+
+# run this command at the beginning of each R session to obtain different graph layouts using plot(g)
+igraph_options(plot.layout = layout_with_fr)
+
+
 # example and after you can change the name of the spiecies
 # species <- c("Algae", "Zooplankton", "Small Fish", "Large Fish", "Bird")
 # predator <- c("Zooplankton", "Small Fish", "Large Fish", "Bird", "Bird")

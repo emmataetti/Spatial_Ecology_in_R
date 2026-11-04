@@ -4,7 +4,8 @@
 #b2:blue, b3:green, b4:red, b8:near infrared
 
 # Zenodo set: https://zenodo.org/records/15645465
-# install.packages("imageRy")
+# library(remotes)
+# install_github("ducciorocchini/imageRy")
 
 library(imageRy)
 library(terra)

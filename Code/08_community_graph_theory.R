@@ -33,9 +33,13 @@ plot(g)
 
 # the graph will mantain the same interactions but with different rappresentation
 # function seed choose only one of the potential rapp
+
 set.seed(42)
 g <- graph_from_data_frame(interactions, vertices=species) # directed=TRUE is the default
 plot(g)
+
+# the graph maintains the same nodes and interactions, but their spatial arrangement can change
+# the set.seed() function makes the random layout reproducible, so the same representation can be obtained again
 
 
 

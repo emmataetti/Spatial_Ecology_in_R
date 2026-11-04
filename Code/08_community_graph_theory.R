@@ -15,7 +15,7 @@ library(igraph)
 species <- c("Algae", "Zooplankton", "Aphia minuta", "Cyprinus carpio", "Laurus")
 
 # INTERACTIONS
-# subset my arrey in two different componennts: prey and predatior
+# subset my arrey in two different componennts: prey and predator
 predator <- c("Zooplankton", "Aphia minuta", "Cyprinus carpio", "Laurus", "Laurus")
 prey <- c("Algae", "Zooplankton", "Aphia minuta", "Aphia minuta", "Cyprinus carpio")
 

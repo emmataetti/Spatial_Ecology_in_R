@@ -11,6 +11,7 @@ library(igraph)
 
 # THE NOODS
 # consider a potential food chain where we start from producer, first consumers untill apical consumers
+# creatiing a vector containing five species, which will represent the nodes of the food web.
 species <- c("Algae", "Zooplankton", "Aphia minuta", "Cyprinus carpio", "Laurus")
 
 # INTERACTIONS
@@ -19,7 +20,7 @@ predator <- c("Zooplankton", "Aphia minuta", "Cyprinus carpio", "Laurus", "Lauru
 prey <- c("Algae", "Zooplankton", "Aphia minuta", "Aphia minuta", "Cyprinus carpio")
 
 # create a table dataframe with predators and preys inside
-interactions <- data.frame(predatior, prey)
+interactions <- data.frame(predator, prey)
 
 # bulding the graph
 # function that create graph from dataframe

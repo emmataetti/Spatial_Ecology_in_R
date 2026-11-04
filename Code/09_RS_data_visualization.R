@@ -1,6 +1,7 @@
 # Code to visualize remote sensing data
 
-# Numbers associated with different bands: https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/bands/
+# numbers associated with different bands: https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/bands/
+#b2:blue, b3:green, b4:red, b8:near infrared
 
 # Zenodo set: https://zenodo.org/records/15645465
 # install.packages("imageRy")
@@ -50,13 +51,6 @@ plot(b8, col=viridis(100))
 
 
 
-
-# multiframe
-par(mfrow=c(1,2))
-# or
-im.multiframe(1,2)
-plot(b2, col=cl)
-plot(b3, col=cl)
 
 # the multiframe from the CRAN is not properly working, so use the GitHub version:
 duccio <- function(x,y){

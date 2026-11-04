@@ -1,5 +1,7 @@
 # Code to visualize remote sensing data
 
+# Numbers associated with different bands: https://custom-scripts.sentinel-hub.com/custom-scripts/sentinel-2/bands/
+
 # Zenodo set: https://zenodo.org/records/15645465
 # install.packages("imageRy")
 
@@ -7,20 +9,47 @@ library(imageRy)
 library(terra)
 library(viridis)
 
-# Listing data inside imageRy
+# listing data inside imageRy
 im.list()
 
+# BLUE b2
 # importing the first band
 b2 <- im.import("sentinel.dolomites.b2.tif")
 plot(b2)
-plot(b2, col=magma(100))
 
-# green band
+# change the palette thanks to viridis package
+plot(b2, col=inferno(100))  # reflecting: yellow /absorb:black
+
+# GREEN b3
+# exercise: import the green band of sentinel and plot it with the mako legend
 b3 <- im.import("sentinel.dolomites.b3.tif")
 plot(b3)
+plot(b3, col=mako(100))  # reflecting:light blue/absorbing:black
 
-cl <- colorRampPalette(c("black","grey","white"))(100)
-plot(b3, col=cl)
+# make a multiframe with the function im.multiframe
+im.multiframe(1,2)
+plot(b2, col=inferno(100))
+plot(b3, col=mako(100))
+
+# exercise: plot the two bands one on top of the other
+im.multiframe(2,1)
+plot(b2, col=inferno(100))
+plot(b3, col=mako(100))
+
+# now we can import all of the other bands
+
+# RED b4
+#import the red band (band number 4)
+b4 <- im.import("sentinel.dolomites.b4.tif")
+plot(b4, col=cividis(100)) # plot it wuith another legend of viridis
+
+# NEAR INFRARED b8
+#import the near infrared
+b8 <- im.import("sentinel.dolomites.b8.tif")
+plot(b8, col=viridis(100)) 
+
+
+
 
 # multiframe
 par(mfrow=c(1,2))

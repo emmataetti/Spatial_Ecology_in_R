@@ -50,71 +50,59 @@ plot(b4, col=cividis(100)) # plot it wuith another legend of viridis
 b8 <- im.import("sentinel.dolomites.b8.tif")
 plot(b8, col=viridis(100)) 
 
-
-
-
-# the multiframe from the CRAN is not properly working, so use the GitHub version:
-duccio <- function(x,y){
-   par(mfrow=c(x,y))
-   }
-
-dev.off()
-plot(b2,b3)
-
-# Exercise: import band 4
-b4 <- im.import("sentinel.dolomites.b4.tif")
-plot(b4)
-plot(b4, col=cl)
-
-# import band 8
-b8 <- im.import("sentinel.dolomites.b8.tif")
-plot(b8)
-
-im.multiframe(1,2)
-plot(b4)
-plot(b8)
-
-# build your own function for plotting
-duccio <- function(x,y){
-  par(mfrow=c(x,y))
-  }
-
-# Exercise: with the function duccio, build a multiframe of 2 rows and 2 columns and plot all the imported data
-duccio(2,2)
+# multiframe with all the bands
+# exercise: build a 4x4 multiframe and plot all of the bands with the default palette (viridis)
+im.multiframe(2,2)
 plot(b2)
 plot(b3)
 plot(b4)
 plot(b8)
 
-# Exercise: create a multiframe with 1 row and 2 columns, plot one against the other 
-# b2 b3
-# b2 b8
+# insted of using default palette, we can also use colorRamp Palette
 
-duccio(1,2)
-plot(b2,b3)
-plot(b2,b8)
+# for b2 - blue band
+clb <- colorRampPalette(c("blue4", "blue1", "cadetblue1")) (100)
+plot(b2, col=clb) # reflecting: light blue
 
-# creating colored images
+# exercise: do the same for b3 - green band
+clg <- colorRampPalette(c("darkolivegreen", "darkolivegreen1", "darkolivegreen3")) (100)
+plot(b3, col=clg) # reflecting: light green
+
+# for b4 - red band
+clr <- colorRampPalette(c("firebrick", "firebrick2", "firebrick3")) (100)
+plot(b4, col=clr) # reflecting: light red
+
+# for b8 - NIR band
+cln <- colorRampPalette(c("magenta", "green", "yellow")) (100)
+plot(b8, col=cln) # absorbing: magenta/ reflecting: green to yellow part
+
+# exercise: create a stack of all the bands togheter with a new obj sent considering the bands as a elements of an array
 sent <- c(b2, b3, b4, b8)
+plot(sent)
+plot(sent, col=magma(100))
 
-# layer 1 = original (from Sentinel-2) b2 = blue
-# layer 2 = original (from Sentinel-2) b3 = green
-# layer 3 = original (from Sentinel-2) b4 = red
-# layer 4 = original (from Sentinel-2) b8 = NIR
+# to get information about a band
+b8 # information about the single band
+sent # informazion about all the bands
 
-# natural color image
-im.plotRGB(sent, r=3, g=2, b=1, title='natural color')
+#now everithing which is assorbing is barck and everything whichiis reflection is light
+# you can reverse the color and you obtain the opposite
+plot(sent, col=magma(100, direction=-1)) # absorbing: light colors
 
-# false color image
-im.plotRGB(sent, r=4, g=3, b=2, title='false color')
-im.plotRGB(sent, r=3, g=4, b=2, title='false color')
-im.plotRGB(sent, r=3, g=2, b=4, title='false color')
+# stack by the imageRy package: in this case i put part of the name that is common between all the files 
+sentinel <- im.import("sentinel.dolomites") # intead of import all single band as we did before using all the name of the file for each band "sentinel.dolomites.b4.tif"
+plot(sent, col=mako(100))
 
-duccio(2,2)
-im.plotRGB(sent, r=3, g=2, b=1, title='natural color')
-im.plotRGB(sent, r=4, g=3, b=2, title='false color')
-im.plotRGB(sent, r=3, g=4, b=2, title='false color')
-im.plotRGB(sent, r=3, g=2, b=4, title='false color')
+# exercise: starting from the stack called sentinel plot only NIR band
+# original b2 = layer 1 in the stack
+# original b3 = layer 2 in the stack
+# original b4 = layer 3 in the stack
+# original b8 = layer 4 in the stack
+# since the stack was built by:sent <- c(b2, b3, b4, b8)
+
+# subset the stack 
+plot(sentinel[[4]])
+
+# RGB: plots all togheter several images 
 
 
-im.plotRGB(x, r, g, b, title = "")

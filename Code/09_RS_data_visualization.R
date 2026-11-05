@@ -85,8 +85,8 @@ plot(sent, col=magma(100))
 b8 # information about the single band
 sent # informazion about all the bands
 
-#now everithing which is assorbing is barck and everything whichiis reflection is light
-# you can reverse the color and you obtain the opposite
+# now everithing which is assorbing is barck and everything whichi is reflecting is light
+# you can reverse the color and you obtain the opposite: with direction=-1
 plot(sent, col=magma(100, direction=-1)) # absorbing: light colors
 
 # stack by the imageRy package: in this case i put part of the name that is common between all the files 
@@ -104,5 +104,40 @@ plot(sent, col=mako(100))
 plot(sentinel[[4]])
 
 # RGB: plots all togheter several images 
+# layer 1 = b2 = blue band
+# layer 2 = b3 = green band
+# layer 3 = b4 = red band
+# layer 4 = b8 = NIR band
+# now we can use these info to create RGB images
 
+# NATURAL COLORS IMAGE
+im.plotRGB(sentinel, r=3, g=2, b=1, title="Natural colors images") 
+#sentinel is the image that we import. it is an obj created before
+# r, g, b equal to the layer associated with the color (r:red, g:green, b:blue)
+
+# FALSE COLORS IMAGE
+# extend the vision to NIR 
+# we have to select three bands so we should remove one band and add NIR
+# we put NIR on top of the red component
+im.plotRGB(sentinel, r=4, g=3, b=2, title="False colors images") 
+
+# to compare natural and false colors
+im.multiframe(1,2)
+im.plotRGB(sentinel, r=3, g=2, b=1, title="Natural colors images") 
+im.plotRGB(sentinel, r=4, g=3, b=2, title="False colors images") 
+
+# exercise: put the NIR on top of the green component
+im.plotRGB(sentinel, r=3, g=4, b=2, title="False colors images") 
+# or you can write also
+im.plotRGB(sentinel, r=2, g=4, b=3, title="False colors images") # you can invert r and b and you obtain the same result, once you are using NIR it dives all thevisualization!
+
+# exercise: put the NIR band on top of blue component
+im.plotRGB(sentinel, r=3, g=2, b=4, title="False colors images") # in this visualization the yellow part=soil
+
+# making multiframe with the four RGB plots
+im.multiframe(2,2)
+im.plotRGB(sentinel, r=3, g=2, b=1, title="Natural colors images") 
+im.plotRGB(sentinel, r=4, g=3, b=2, title="False colors images") 
+im.plotRGB(sentinel, r=3, g=4, b=2, title="False colors images") 
+im.plotRGB(sentinel, r=3, g=2, b=4, title="False colors images")
 

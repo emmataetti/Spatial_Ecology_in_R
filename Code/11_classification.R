@@ -1,10 +1,32 @@
-# This code can be used to classify satellite data
+# R code to classify the images thanks to k-means
+# link: https://github.com/ducciorocchini/Spatial_Ecology_in_R_2026/blob/main/kmeans.md
+
+#packages
+library(terra)
+library(imageRy)
+
+#list of the data
+im.list()
+
+# exercise: import solar orbiter image and assign it to the obj called sun
+sun <- im.import("Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg")
+# three main levels of gass energy: yellow(high energy)/brown(medium energy)/dark brown(low energy) so 3 classies
+
+# classifying the data
+?im.classify # for the explenation
+sunclass <- im.classify(sun, num_clusters=3)
+
+# seed an argument that concent to use only one aiteration
+sunclass <- im.classify(sun, num_clusters=3, seed=42) # to obtail always the same colors instead of changing every time
+
+
+
+
 
 # install.packages("ggplot2")
 # install.packages(patchwork)
 
-library(terra)
-library(imageRy)
+
 library(ggplot2)
 library(patchwork) 
 

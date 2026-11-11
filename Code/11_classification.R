@@ -5,6 +5,10 @@
 library(terra)
 library(imageRy)
 
+# install.packages("ggplot2")
+# install.packages("patchwork")
+
+
 #list of the data
 im.list()
 
@@ -19,79 +23,91 @@ sunclass <- im.classify(sun, num_clusters=3)
 # seed an argument that concent to use only one aiteration
 sunclass <- im.classify(sun, num_clusters=3, seed=42) # to obtail always the same colors instead of changing every time
 
+# importing data of matogrosso
+# exercise: import data of matogroosso and give them the names of m1992 and m2006
+m1992 <- im.import("matogrosso_l5_1992219_lrg.jpg")
+m2006 <- im.import("matogrosso_ast_2006209_lrg.jpg")
+
+# plot them in a multiframe
+> im.multiframe(1,2)
+> plot(m1992)
+> plot(m2006)
+
+# if the images are flipped upside down (in my case they are in the correct orientation)
+# flip() is the function to put the images north oriented
+# m1992 <- flip(m1992)
+# m2006 <- flip(m2006)
+
+# classifying the m1992 image into forest and human (two classes so two clusters)
+ m1992class <- im.classify(m1992, num_clusters=2)
+# class 1: forest
+# class 2: human 
+# in my case the colors can be the opssosite for someonelese
+
+# classifying the m2006 image into forest and human
+ m2006class <- im.classify(m2006, num_clusters=2)
+# class 1: human
+# class 2: forest 
+# in my case
+
+# frequencies of pixels attaining to the classes of m1992class
+# function freq() that calculates the frequencies of data
+f1992 <- freq(m1992class)
+
+# calculate proportion: freq/tot
+#calculate the total : the function ncell() that calculate tehe total number of cells
+tot1992 <- ncell(m1992class)
+# exercise: calculate the proportion of the two classes
+prop1992= f1992 / tot1992 # since this is a matemathical operation i can put = intead of <-
+
+# calculating percentages
+perc1992 = prop1992*100
+perc1992
+# forest:83%
+# human:17%
+
+# freq of m2006
+f2006 <- freq(m2006class)
+# total of m2006
+tot2006 <- ncell(m2006class)
+# proportion of the two classes 
+prop2006= f2006 / tot2006
+# percentage of m2006
+perc2006 = prop2006*100
+perc2006
+# human : 55%
+# forest : 45%
+
+#creating a dataframe
+class <- c("Forest", "Human")
+perc1992 <- c(83,17)
+perc2006 <- c (55,45)
+tabout <- data.frame (class, perc1992, perc2006)
+
+# plot stats
+ggplot(tabout, aes(x=class, y=perc1992, color=class)) +
+ geom_bar(stat="identity", fill="white")
+# aes is the aesthetic
+# geom_bar() ??
+
+# exercise: do the same for 2006
+ggplot(tabout, aes(x=class, y=perc2006, color=class)) + 
+  geom_bar(stat="identity", fill="white")
 
 
 
 
-# install.packages("ggplot2")
-# install.packages(patchwork)
+
+
 
 
 library(ggplot2)
 library(patchwork) 
 
-im.list()
 
-m1992 <- im.import("matogrosso_l5_1992219_lrg.jpg")
-# from outside the imageRy package: rast() function from terra
-# layers: 1 = NIR, 2 = red; 3 = green
 
-plot(m1992) # rgb 123
 
-# Exercise: import the image from 2006
-m2006 <- im.import("matogrosso_ast_2006209_lrg.jpg")
-plot(m2006)
 
-# testing classification
-sun <- im.import("Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg")
-plot(sun)
-
-sunc <- im.classify(sun, num_clusters=3) # unsupervised classification
-
-par(mfrow=c(2,1))
-plot(sun)
-plot(sunc)
-
-# Apply the classification process to the Mato Grosso area
-
-m1992c <- im.classify(m1992, num_clusters=2)
-# class 1: human + water
-# class 2: rainforest
-
-# Exercise: classify the 2006 image
-m2006c <- im.classify(m2006, num_clusters=2)
-# class 1: rainforest
-# class 2: human + water
-
-# Calculating frequcnies
-f1992 <- freq(m1992c)
-
-# Proportions
-# f/tot
-tot1992c <- ncell(m1992c)
-prop1992 = f1992$count / tot1992c
-
-# Percentages
-perc1992 = prop1992 * 100
-# 1992: human = 17%, forest = 83%
-
-# You can calculate everything in a single line
-perc1992 = freq(m1992c) * 100 / ncell(m1992c)
-
-# Exercise: calculate percentages of the image from 2006
-perc2006 = freq(m2006c) * 100 / ncell(m2006c)
-# 2006: forest = 45%, human = 55%
-
-# Let's implement a dataframe withthree columns: 
-# class
-# perc1992
-# perc2006
-
-class <- c("forest", "human")
-perc1992 <- c(83, 17)
-perc2006 <- c(45, 55)
-tabout <- data.frame(class, perc1992, perc2006)
-tabout # the dataframe is ready to go!
 
 # Using the ggplot2 package for the final graph
 p1 <- ggplot(tabout, aes(x=class, y=perc1992, color=class)) + 

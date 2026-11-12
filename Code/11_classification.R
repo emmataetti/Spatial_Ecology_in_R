@@ -84,41 +84,91 @@ perc1992 <- c(83,17)
 perc2006 <- c (55,45)
 tabout <- data.frame (class, perc1992, perc2006)
 
+# we are going to use another package
+library(ggplot2)
+
 # plot stats
 ggplot(tabout, aes(x=class, y=perc1992, color=class)) +
  geom_bar(stat="identity", fill="white")
-# aes is the aesthetic
-# geom_bar() ??
+# aes is the aesthetic: describe the composition of the graph
+# geom_bar() describe how to do the bar (ex fill is the color inside the bar)
 
 # exercise: do the same for 2006
 ggplot(tabout, aes(x=class, y=perc2006, color=class)) + 
   geom_bar(stat="identity", fill="white")
 
+# changing the fill color 
+ggplot(tabout, aes(x=class, y=perc1992, color=class)) +
+ geom_bar(stat="identity", fill="yellow")
 
+# changing the geometry
+# add point instead of bar using another funcion geom_point()
+ggplot(tabout, aes(x=class, y=perc1992, color=class)) +
+ geom_point()
 
+# so we have two ggplots of 1992 and 2006 
+# 1992
+ggplot(tabout, aes(x=class, y=perc1992, color=class)) +
+ geom_bar(stat="identity", fill="white")
+# 2006
+ggplot(tabout, aes(x=class, y=perc2006, color=class)) + 
+  geom_bar(stat="identity", fill="white")
 
-
-
-
-
-library(ggplot2)
+# we are going to use another package
 library(patchwork) 
-
-
-
-
-
-
-# Using the ggplot2 package for the final graph
-p1 <- ggplot(tabout, aes(x=class, y=perc1992, color=class)) + 
-      geom_bar(stat="identity", fill="white") +
-      ylim(c(0,100)) +
-      theme(legend.position = "none")
-
-# Exercise: make the same plot for 2006
+# using this package to plot several plots togheter
+# assign the plots to obj
+p1 <- ggplot(tabout, aes(x=class, y=perc1992, color=class)) +
+ geom_bar(stat="identity", fill="white")
 p2 <- ggplot(tabout, aes(x=class, y=perc2006, color=class)) + 
-      geom_bar(stat="identity", fill="white") +
-      ylim(c(0,100))
+  geom_bar(stat="identity", fill="white")
+p1+p2
 
-p1 + p2
-p1 / p2
+# exercise: with patchwork put one plot on top the other
+p1/p2
+
+# NB with ggplot you can not the multriframe function!
+
+# p1+p2 the plot at sx and the plot a dx have a different scale so bias
+# to solve the issue: function that change the scale of data called ylim
+
+p1 <- ggplot(tabout, aes(x=class, y=perc1992, color=class)) +
+ geom_bar(stat="identity", fill="white") +
+ ylim(0,100) # range inside () in  this case we are dealing with % so from 00 to 100
+
+p2 <- ggplot(tabout, aes(x=class, y=perc2006, color=class)) + 
+  geom_bar(stat="identity", fill="white") +
+  ylim(0,100)
+
+p1+p2
+
+# removing one legend
+p1 <- ggplot(tabout, aes(x=class, y=perc1992, color=class)) +
+ geom_bar(stat="identity", fill="white") +
+ ylim(0,100) +
+ theme(legend.position="none")
+
+p2 <- ggplot(tabout, aes(x=class, y=perc2006, color=class)) + 
+  geom_bar(stat="identity", fill="white") +
+  ylim(0,100)
+
+p1+p2
+
+#using patchwork with satellite date
+im.ggplot(m1992[[1]])
+im.ggplot(m2006[[1]])
+
+# plotting satellite data and stat togheter
+s1 <- im.ggplot(m1992[[1]])
+s2 <- im.ggplot(m2006[[1]])
+
+# final plot
+(s1 | s2)
+/ (p1 | p2)
+
+
+
+
+
+
+

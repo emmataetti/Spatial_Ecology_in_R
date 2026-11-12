@@ -172,7 +172,7 @@ rgb2 <- im.ggplotRGB(m2006)
 
 # final plot
 (rgb1 | rgb2) /
-(p1 | p2) 
+(p1 | p2)
 
 
 

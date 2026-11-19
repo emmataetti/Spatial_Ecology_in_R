@@ -95,8 +95,9 @@ im.plotRGB(bologna, 1, 2, 3)
 # https://github.com/ducciorocchini/Spatial_Ecology_in_R_2026/tree/main/Data/group_photo/DJI_20261118105938_0002_D.JPG
 # put the link on chatgpt and ask the real link to get data from GitHub
 # use this link:
+https://github.com/ducciorocchini/Spatial_Ecology_in_R_2026/raw/refs/heads/main/Data/group_photo/DJI_20261118105938_0002_D.JPG
 
-groupphoto <- 
+groupphoto <- rast("https://github.com/ducciorocchini/Spatial_Ecology_in_R_2026/raw/refs/heads/main/Data/group_photo/DJI_20261118105938_0002_D.JPG") 
 plot(groupphoto)
 
 # we can do the same for zenodo

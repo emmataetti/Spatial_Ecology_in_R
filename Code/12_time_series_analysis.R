@@ -5,6 +5,10 @@ library(terra)
 library(imageRy)
 library(patchwork)
 
+#------------------
+
+# EUROPEAN NITROGEN
+
 # listing data
 im.list() 
 # there is a file called EN that stands for european nitrogen
@@ -58,9 +62,46 @@ im.ridgeline(ndvi)
 
 # error so to solve the problem we should givw diff names (ascolta reg)
 names(ndvi) <- c ("02_feb", "05_may", "01_aug", "27_nov")
+
+# ridgeline plots
 im.ridgeline(ndvi)
 
+# changing the scale parameter inside im.ridgeline()
+im.ridgeline(ndvi, scale=1)
 
+# increasing scale 
+im.ridgeline(ndvi, scale=10)
+
+# changing the palette
+im.ridgeline(ndvi, palette="magma")
+
+# changing the direction of colors
+im.ridgeline(ndvi, palette="magma", direction=-1)
+
+#------------------
+
+# ICE MELT IN GREENLAND
+
+# exercise: import the greenland data altogether in a stack
+
+gr <- im.import("greenland")
+
+# exercise: plot only the tenperature of 2000 with the inferno legend from the viridis package
+plot(gr[[1]], col=inferno(100))
+
+# plotting the data from 2015
+plot(gr[[4]], col=inferno(100))
+
+# difference between 2000 and 2015
+dif <- gr[[1]] - gr[[4]]
+plot(dif)
+
+# RGB plot with three different layers in time
+# on the red = 2000, all of the parts becoming red will have high temperatures in 2000
+# on the green = 2005, all of the parts becoming green will have high temperatures in 2005
+# on the blue = 2015, all of the parts becoming blue will have high temperatures in 2015
+
+im.plotRGB(gr, 1, 2, 4)
 
 
 

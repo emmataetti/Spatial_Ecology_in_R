@@ -64,13 +64,50 @@ plot(stackNIR[[2]], stackNIR[[4]])
 abline(0,1, col="red") # y=x
 
 # how to measure variability
-# ex: given the statistical function sd(standard deviation), calculate sd of the NIR with a moving window of 3x3
+# exercise: given the statistical function sd(standard deviation), calculate sd of the NIR with a moving window of 3x3
 # sd 3x3
-# sd <- focal(sent[[1]], w=13, fun="sd") # avoid this! otherwise you will overwrite the statistical function sd (standard deviation) with the object sd
-sdNIR <- focal(sent[[1]], w=13, fun="sd") 
+# sd <- focal(sent[[1]], w=3, fun="sd") # avoid this! otherwise you will overwrite the statistical function sd (standard deviation) with the object sd
+sdNIR <- focal(sent[[1]], w=3, fun="sd") 
 stacksd <- c(sent[[1]], sdNIR)
-plot(stacksd, col=viridis(100))
+plot(stacksd, col=cividis(100))
+plot(stacksd)
 
+# exercise: calculate sd for :
+# 7x7 pixels 
+# 13x13 pixels
+# and make a stack of all of the data: original, 3x3, 7x7, 13x13
+# rename the inner layers of the stack 
 
+sdNIR7 <- focal(sent[[1]], w=7, fun="sd") 
+sdNIR13 <- focal(sent[[1]], w=13, fun="sd") 
+stacksd <- c(sent[[1]], sdNIR, sdNIR7, sdNIR13)
+names(stacksd) <- c("original", "sd_3", "sd_7","sd_13")
+stacksd # check if the names are different
 
+plot(stacksd, col=plasma(100))
+
+# measuring the variability of the whole original image (called sent)
+# sent <- im.import("sentinel.png")
+# with three layers:
+# layer 1: NIR
+# layer 2: red
+# layer 3: green
+
+sentsd <- focal(sent, w=7, fun="sd") # in this case i'm not chossing a single layer
+sentsd # the output image has 3 layers
+# hypothesis:
+# test: plotting the NIRsd vs the sd of the first layer of sent -> sentsd vs sdNIR7
+
+plot(sentsd) 
+teststack <- c(sdNIR, sentsd[[1]])
+plot(teststack)
+
+# scatterplot
+plot(sdNIR, sentsd[[1]])
+
+# pearson correlation (r): values from 0 to 1
+# we need vectors (an array of values) not maps, so we use values()
+x <- values(sdNIR)
+y <- values(sentsd[[1]])
+cor(x, y, use="complete.obs")
 

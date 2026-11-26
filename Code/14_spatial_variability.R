@@ -51,3 +51,26 @@ stackNIR <- c(sent[[1]], meanNIR, meanNIR7, meanNIR13)
 # library(viridis)
 plot(stackNIR, col=inferno(100))
 
+stackNIR # several images with the same names
+# names: sentinel_1, focal_mean, focal_mean, focal_mean
+# change the names to the stack
+names(stackNIR) <- c("original", "mean_3", "mean_7","mean_13")
+stackNIR # we can see the new names
+plot(stackNIR, col=mako(100))
+
+# plotting to sets in scatterplot
+plot(stackNIR[[2]], stackNIR[[4]])
+# add the line of the relationship of 1:1 between mean_13 and mean_3
+abline(0,1, col="red") # y=x
+
+# how to measure variability
+# ex: given the statistical function sd(standard deviation), calculate sd of the NIR with a moving window
+# sd 3x3
+# sd <- focal(sent[[1]], w=13, fun="sd") # avoid this! otherwise you will overwrite the statistical function sd with the object sd
+sdNIR <- focal(sent[[1]], w=13, fun="sd") 
+stacksd <- c(sent[[1]], sdNIR)
+plot(stacksd, col=viridis(100))
+
+
+
+

@@ -64,9 +64,9 @@ plot(stackNIR[[2]], stackNIR[[4]])
 abline(0,1, col="red") # y=x
 
 # how to measure variability
-# ex: given the statistical function sd(standard deviation), calculate sd of the NIR with a moving window
+# ex: given the statistical function sd(standard deviation), calculate sd of the NIR with a moving window of 3x3
 # sd 3x3
-# sd <- focal(sent[[1]], w=13, fun="sd") # avoid this! otherwise you will overwrite the statistical function sd with the object sd
+# sd <- focal(sent[[1]], w=13, fun="sd") # avoid this! otherwise you will overwrite the statistical function sd (standard deviation) with the object sd
 sdNIR <- focal(sent[[1]], w=13, fun="sd") 
 stacksd <- c(sent[[1]], sdNIR)
 plot(stacksd, col=viridis(100))

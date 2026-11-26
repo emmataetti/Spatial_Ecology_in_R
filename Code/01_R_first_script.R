@@ -26,13 +26,15 @@ elisa <- c(100, 80, 50, 20, 10) #an array of human deaths due to a disease
 # changing the point character
 plot(matteo, elisa, pch=19)
 
-
 #character exaggeration
 plot(matteo, elisa, pch=19, cex=2)
 
-
 #color
 plot(matteo, elisa, pch=19, cex=2, col="blue")
+
+# for point/color you can search on internet to choose the type you like:
+# colors -> https://r-charts.com/colors/
+# point -> https://r-charts.com/base-r/pch-symbols/
 
 # change lables
 plot(matteo, elisa, pch=19, cex=2, col="blue", xlab="number of mammals", ylab="number of human deaths")

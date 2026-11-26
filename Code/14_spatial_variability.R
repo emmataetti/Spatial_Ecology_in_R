@@ -103,11 +103,33 @@ teststack <- c(sdNIR, sentsd[[1]])
 plot(teststack)
 
 # scatterplot
-plot(sdNIR, sentsd[[1]])
+plot(sdNIR7, sentsd[[1]])
+cor(sdNIR7, sentsd[[1]])
 
 # pearson correlation (r): values from 0 to 1
-# we need vectors (an array of values) not maps, so we use values()
+# the correlation could be done among vectors (an array of values) not maps, so we use values()
 x <- values(sdNIR)
 y <- values(sentsd[[1]])
 cor(x, y, use="complete.obs")
+
+# since cor=1, the two data are the same!
+
+# loop
+sdNIR <- list()
+
+for (w in 1:27) {
+  if (w %% 2 == 1 && w > 1) {
+    sdNIR[[paste0("w", w)]] <- focal(     
+      sent[[1]],
+      w = matrix(1, nrow = w, ncol = w),
+      fun = "sd"
+    )
+  }
+}
+
+# changing the list to a raster
+sdNIR_stack <- rast(sdNIR)
+names(sdNIR_stack) <- names(sdNIR)
+
+plot(sdNIR_stack)
 
